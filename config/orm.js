@@ -27,7 +27,6 @@ var orm = {
 
   insertOne: function(burger, callback) {
     var s = "INSERT INTO " + tableName + " (burger_name, devoured) VALUES (?,?)";
-    todo.complete = todo.complete || 0;
     connection.query(s, [
       burger.burger_name, burger.devoured
     ], function(err, result) {
@@ -37,11 +36,11 @@ var orm = {
     });
   },
 
-  updateOne: function(burger, callback) {
-    var s = "UPDATE " + tableName + " SET burger_name=? WHERE id=?";
+  devourOne: function(burger, condition, callback) {
+    var s = "UPDATE " + tableName + " SET devoured=? WHERE " + condition;
 
     connection.query(s, [
-        burger.burger_name, burger.devoured
+        burger.devoured
     ], function(err, result) {
 
       callback(result);

@@ -16,21 +16,14 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/api/burgers", function(req, res) {
-  burger.create(["name", "sleepy"], [req.body.name, req.body.sleepy], function(result) {
-    // Send back the ID of the new quote
-    res.json({ id: result.insertId });
-  });
-});
-
-router.put("/api/burgers/:id", function(req, res) {
+router.post("/devour/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
 
   burger.update(
     {
-      sleepy: req.body.sleepy
+      devoured: true
     },
     condition,
     function(result) {

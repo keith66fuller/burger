@@ -16,3 +16,5 @@ var source = {
       insecureAuth: true
     },
   };
+
+  module.exports = source;

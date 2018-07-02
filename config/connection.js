@@ -1,28 +1,7 @@
-// *********************************************************************************
-// CONNECTION.JS - THIS FILE INITIATES THE CONNECTION TO MYSQL
-// *********************************************************************************
-
-// Requiring mysql package
 var mysql = require("mysql2");
+var source = require("./config")
 
-// Setting up our connection information
-var source = {
-  localhost: {
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "ou812",
-    database: "burgers_db",
-    insecureAuth: true
-  }
-};
-
-
-// Creating our connection
-var connection = mysql.createConnection(source.localhost);
-
-
-// Connecting to the database.
+var connection = mysql.createConnection( process.NODE_ENV.JAWSDB_URL ? source.heroku : source.localhost);
 connection.connect(function(err) {
   if (err) {
     console.error("error connecting: " + err.stack);
@@ -31,5 +10,4 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
 });
 
-// Exporting our connection
 module.exports = connection;

@@ -1,7 +1,7 @@
 var mysql = require("mysql2");
 var source = require("./config")
 
-var connection = mysql.createConnection( process.NODE_ENV.JAWSDB_URL ? source.heroku : source.localhost);
+var connection = mysql.createConnection( process.env.JAWSDB_URL ? source.heroku : source.localhost);
 connection.connect(function(err) {
   if (err) {
     console.error("error connecting: " + err.stack);
